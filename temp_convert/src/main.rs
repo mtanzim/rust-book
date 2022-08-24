@@ -57,6 +57,6 @@ fn main() {
         } else {
             convert_f_to_c(temp)
         };
-        println!("{result} {mode_converted}");
+        println!("{result}{mode_converted}");
     }
 }
