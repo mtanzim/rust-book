@@ -47,11 +47,7 @@ fn main() {
         };
         println!("You entered: {temp}{mode_in}");
 
-        let mode_converted: String = if mode == C_MODE {
-            "F".to_string()
-        } else {
-            "C".to_string()
-        };
+        let mode_converted: &str = if mode == C_MODE { "F" } else { "C" };
         let result = if mode == C_MODE {
             convert_c_to_f(temp)
         } else {
