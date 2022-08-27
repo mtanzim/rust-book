@@ -19,7 +19,7 @@ fn fib(n: i64) -> i64 {
 
 fn main() {
     println!("Hello, world!");
-    for i in 0..=20 {
+    for i in 0..=50 {
         println!("{}", fib(i));
     }
 }
