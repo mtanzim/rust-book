@@ -2,5 +2,7 @@
 
 ## Why?
 
-- Curious
+- Curiosity of the language
+- Study applications of functional programming principles and idioms
+- Learn about systems programming and manual memory management
 
