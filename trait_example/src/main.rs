@@ -13,7 +13,7 @@ pub struct Tweet {
 }
 
 pub struct Blurb {
-    pub commentor: String,
+    pub commenter: String,
     pub text: String,
 }
 
@@ -50,7 +50,7 @@ fn main() {
     };
 
     let blurb = Blurb {
-        commentor: String::from("Tanzim"),
+        commenter: String::from("Tanzim"),
         text: String::from("Hello"),
     };
 
