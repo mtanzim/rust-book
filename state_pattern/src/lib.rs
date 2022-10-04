@@ -24,10 +24,10 @@ impl Post {
         }
     }
     pub fn approve(&mut self) {
-      if let Some(s) = self.state.take() {
-          self.state = Some(s.approve())
-      }
-  }
+        if let Some(s) = self.state.take() {
+            self.state = Some(s.approve())
+        }
+    }
 }
 
 trait State {
@@ -69,5 +69,63 @@ impl State for Published {
     }
     fn content<'a>(&self, post: &'a Post) -> &'a str {
         &post.content
+    }
+}
+
+pub mod functional {
+    pub struct Post {
+        content: String,
+    }
+    pub struct DraftPost {
+        content: String,
+    }
+
+    pub struct PendingReview {
+        content: String,
+    }
+
+    pub struct Published {
+        content: String,
+    }
+
+    impl Post {
+        pub fn new() -> DraftPost {
+            DraftPost {
+                content: String::new(),
+            }
+        }
+        pub fn content(&self) -> &str {
+            &self.content
+        }
+    }
+
+    impl DraftPost {
+        pub fn add_text(&mut self, text: &str) {
+            self.content.push_str(text)
+        }
+        pub fn content(&self) -> &str {
+            ""
+        }
+        pub fn request_review(self) -> PendingReview {
+            PendingReview {
+                content: self.content,
+            }
+        }
+    }
+
+    impl PendingReview {
+        pub fn approve(self) -> Published {
+            Published {
+                content: self.content,
+            }
+        }
+        pub fn content(&self) -> &str {
+            ""
+        }
+    }
+    impl Published {
+        pub fn content(&self) -> &str {
+            &self.content
+        }
     }
 }
