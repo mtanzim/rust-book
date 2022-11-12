@@ -1,27 +1,31 @@
-use futures::executor::block_on;
+use futures::{executor::block_on, future};
 
+struct Song {}
 
-async fn learn_song() {
-    println!("learning song")
+async fn learn_song() -> Song {
+    println!("learning song");
+    return Song {};
 }
 
-
-async fn sing_song() {
-    println!("singing")
+async fn sing_song(song: Song) {
+    println!("singing song")
 }
 
-
-async fn dancing() {
+async fn dance() {
     println!("dancing")
 }
 
+async fn learn_and_sing() {
+    let song = learn_song().await;
+    sing_song(song).await;
+}
 
-
-async fn hello_future() {
-    println!("Hello, future")
+async fn async_main() {
+    let f1 = learn_and_sing();
+    let f2 = dance();
+    futures::join!(f1, f2);
 }
 
 fn main() {
-    let future = hello_future();
-    block_on(future);
+    block_on(async_main());
 }
